@@ -37,23 +37,11 @@ class ViewController: UIViewController {
         return label
     }()
     
-    private let idTextField: UITextField = {
+    private let idTextField: InsetTextField = {
         let textField = InsetTextField()
         textField.insetX = 16
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "아이디"
-        textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        textField.backgroundColor = UIColor(w: 242)
-        textField.layer.cornerRadius = 20
-        textField.clipsToBounds = true
-        return textField
-    }()
-    
-    private let passwordTextField: UITextField = {
-        let textField = InsetTextField()
-        textField.insetX = 16
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "비밀번호"
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         textField.backgroundColor = UIColor(w: 242)
         textField.layer.cornerRadius = 20
@@ -62,10 +50,21 @@ class ViewController: UIViewController {
         return textField
     }()
     
+    private let passwordTextField: InsetTextField = {
+        let textField = InsetTextField()
+        textField.insetX = 16
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "비밀번호"
+        textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        textField.backgroundColor = UIColor(w: 242)
+        textField.layer.cornerRadius = 20
+        textField.clipsToBounds = true // 외부 곡선 시 꼭 필요
+        return textField
+    }()
+    
     private let loginButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("에누리타임 로그인", for: .normal)
+        button.setTitle("에브리타임 로그인", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor(r: 198, g: 41, b: 23)
@@ -92,8 +91,6 @@ class ViewController: UIViewController {
         return stackView
     }()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(self.container)
@@ -104,6 +101,35 @@ class ViewController: UIViewController {
         self.container.addArrangedSubview(self.passwordTextField)
         self.container.addArrangedSubview(self.loginButton)
         self.container.addArrangedSubview(self.signupButton)
+        
+        self.container.setCustomSpacing(10, after: self.titleImageView )
+        
+        self.container.setCustomSpacing(46, after: self.titleLabel)
+        
+        self.container.setCustomSpacing(30, after: self.loginButton)
+        
+        NSLayoutConstraint.activate([
+            self.container.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -50),
+            self.container.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 50),
+            self.container.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            
+            self.titleImageView.heightAnchor.constraint(equalToConstant: 60),
+            self.titleImageView.widthAnchor.constraint(equalToConstant: 60),
+            
+            self.idTextField.leadingAnchor.constraint(equalTo: self.container.leadingAnchor),
+            self.idTextField.trailingAnchor.constraint(equalTo: self.container.trailingAnchor),
+            self.idTextField.heightAnchor.constraint(equalToConstant: 40),
+            self.passwordTextField.leadingAnchor.constraint(equalTo: self.container.leadingAnchor),
+            self.passwordTextField.trailingAnchor.constraint(equalTo: self.container.trailingAnchor),
+            self.passwordTextField.heightAnchor.constraint(equalToConstant: 40),
+            
+            self.loginButton.leadingAnchor.constraint(equalTo: self.container.leadingAnchor),
+            self.loginButton.trailingAnchor.constraint(equalTo: self.container.trailingAnchor),
+            self.loginButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            self.signupButton.leadingAnchor.constraint(equalTo: self.container.leadingAnchor),
+            self.signupButton.trailingAnchor.constraint(equalTo: self.container.trailingAnchor),
+        ])
     }
 }
 
