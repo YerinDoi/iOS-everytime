@@ -91,6 +91,8 @@ class ViewController: UIViewController {
         return stackView
     }()
     
+    private var centerYConstraint: NSLayoutConstraint?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(self.container)
@@ -108,10 +110,14 @@ class ViewController: UIViewController {
         
         self.container.setCustomSpacing(30, after: self.loginButton)
         
+        self.centerYConstraint = self.container.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        self.centerYConstraint?.isActive = true
+        
+        
         NSLayoutConstraint.activate([
             self.container.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -50),
             self.container.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 50),
-            self.container.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+//            self.container.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             
             self.titleImageView.heightAnchor.constraint(equalToConstant: 60),
             self.titleImageView.widthAnchor.constraint(equalToConstant: 60),
@@ -130,6 +136,71 @@ class ViewController: UIViewController {
             self.signupButton.leadingAnchor.constraint(equalTo: self.container.leadingAnchor),
             self.signupButton.trailingAnchor.constraint(equalTo: self.container.trailingAnchor),
         ])
+        
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
+//        self.view.addGestureRecognizer(tapGesture)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, 
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self,
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+            
+            guard let userInfo = notification.userInfo,
+                  let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
+                  let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+            else {
+                return
+            }
+            
+            UIView.animate(withDuration: duration) {
+                [self.titleImageView, self.descriptionLabel, self.titleLabel, self.signupButton].forEach { view in
+                    view.alpha = 0
+                }
+                self.centerYConstraint?.constant = -keyboardFrame.height
+                self.view.layoutIfNeeded()
+            }
+
+        }
+        
+        @objc func keyboardWillHide(notification: Notification) {
+            guard let userInfo = notification.userInfo,
+                  let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+            else {
+                return
+            }
+            
+            UIView.animate(withDuration: duration) {
+                [self.titleImageView, self.descriptionLabel, self.titleLabel, self.signupButton].forEach { view in
+                    view.alpha = 1
+                }
+                self.centerYConstraint?.constant = 0
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+//        @objc func viewDidTap(gesture: UITapGestureRecognizer) {
+//            self.view.endEditing(true)
+//        }
+    
 }
 
