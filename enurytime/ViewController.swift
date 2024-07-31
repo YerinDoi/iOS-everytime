@@ -45,7 +45,6 @@ class ViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         textField.backgroundColor = UIColor(w: 242)
         textField.layer.cornerRadius = 20
-        textField.isSecureTextEntry = true
         textField.clipsToBounds = true
         return textField
     }()
@@ -57,6 +56,7 @@ class ViewController: UIViewController {
         textField.placeholder = "비밀번호"
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         textField.backgroundColor = UIColor(w: 242)
+        textField.isSecureTextEntry = true
         textField.layer.cornerRadius = 20
         textField.clipsToBounds = true // 외부 곡선 시 꼭 필요
         return textField
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
         return stackView
     }()
     
-    private var centerYConstraint: NSLayoutConstraint?
+    private var centerYconstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,18 +105,15 @@ class ViewController: UIViewController {
         self.container.addArrangedSubview(self.signupButton)
         
         self.container.setCustomSpacing(10, after: self.titleImageView )
-        
         self.container.setCustomSpacing(46, after: self.titleLabel)
-        
         self.container.setCustomSpacing(30, after: self.loginButton)
         
-        self.centerYConstraint = self.container.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-        self.centerYConstraint?.isActive = true
-        
+        let constraint = self.container.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
         
         NSLayoutConstraint.activate([
             self.container.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -50),
             self.container.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 50),
+            constraint,
 //            self.container.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             
             self.titleImageView.heightAnchor.constraint(equalToConstant: 60),
@@ -137,13 +134,16 @@ class ViewController: UIViewController {
             self.signupButton.trailingAnchor.constraint(equalTo: self.container.trailingAnchor),
         ])
         
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
-//        self.view.addGestureRecognizer(tapGesture)
+        self.centerYconstraint = constraint
+        
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(viewDidTap))
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        NotificationCenter.default.addObserver(self, 
+        NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
@@ -156,51 +156,56 @@ class ViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self,
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
+                                                  name: UIResponder.keyboardWillShowNotification,
+                                                  object: nil)
         NotificationCenter.default.removeObserver(self,
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
+                                                  name: UIResponder.keyboardWillHideNotification,
+                                                  object: nil)
     }
     
-    @objc func keyboardWillShow(notification: Notification) {
-            
-            guard let userInfo = notification.userInfo,
-                  let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
-                  let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
-            else {
-                return
-            }
-            
-            UIView.animate(withDuration: duration) {
-                [self.titleImageView, self.descriptionLabel, self.titleLabel, self.signupButton].forEach { view in
-                    view.alpha = 0
-                }
-                self.centerYConstraint?.constant = -keyboardFrame.height
-                self.view.layoutIfNeeded()
-            }
-
-        }
-        
-        @objc func keyboardWillHide(notification: Notification) {
-            guard let userInfo = notification.userInfo,
-                  let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
-            else {
-                return
-            }
-            
-            UIView.animate(withDuration: duration) {
-                [self.titleImageView, self.descriptionLabel, self.titleLabel, self.signupButton].forEach { view in
-                    view.alpha = 1
-                }
-                self.centerYConstraint?.constant = 0
-                self.view.layoutIfNeeded()
-            }
-        }
-        
-//        @objc func viewDidTap(gesture: UITapGestureRecognizer) {
-//            self.view.endEditing(true)
-//        }
+    // 화면 터치 했을 때 키보드 내려감
+    @objc func viewDidTap(gesture: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
     
+    // 키보드 올라감
+    @objc func keyboardWillShow(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
+              let duation = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+        else {
+            return
+        }
+        let keyboardHeight = keyboardFrame.height
+        
+        UIView.animate(withDuration: duation) {
+            // 키보드 올라왔을 때 거슬리는 뷰들 안보이게 하기
+            [self.titleLabel, self.titleImageView, self.descriptionLabel, self.signupButton].forEach {
+                view in view.alpha = 0
+            }
+            
+            self.centerYconstraint?.constant = -keyboardHeight
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    // 키보드 내려감
+    @objc func keyboardWillHide(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let duation = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+        else {
+            return
+        }
+        
+        UIView.animate(withDuration: duation) {
+            // 키보드 올라왔을 때 거슬리는 뷰들 다시 보이게 하기
+            [self.titleLabel, self.titleImageView, self.descriptionLabel, self.signupButton].forEach {
+                view in view.alpha = 1
+            }
+            
+            self.centerYconstraint?.constant = 0
+            self.view.layoutIfNeeded()
+        }
+    }
 }
 
