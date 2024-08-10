@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
     
     private let titleImageView: UIImageView = {
         let imageView = UIImageView()
@@ -133,8 +133,11 @@ class ViewController: UIViewController {
             self.signupButton.leadingAnchor.constraint(equalTo: self.container.leadingAnchor),
             self.signupButton.trailingAnchor.constraint(equalTo: self.container.trailingAnchor),
         ])
-        
         self.centerYconstraint = constraint
+        
+        self.loginButton.addTarget(self,
+                                   action:#selector(onPressLoginButton),
+                                   for: .touchUpInside)
         
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(viewDidTap))
@@ -160,7 +163,7 @@ class ViewController: UIViewController {
                                                   object: nil)
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillHideNotification,
-                                                  object: nil)
+                                                     object: nil)
     }
     
     // 화면 터치 했을 때 키보드 내려감
@@ -206,6 +209,16 @@ class ViewController: UIViewController {
             self.centerYconstraint?.constant = 0
             self.view.layoutIfNeeded()
         }
+    }
+    
+    @objc func onPressLoginButton(sender: Any) {
+        let nav = UINavigationController()
+        nav.modalPresentationStyle = .fullScreen
+        nav.navigationBar.barTintColor = .white
+        nav.navigationBar.tintColor = UIColor(w: 42)
+        let controller = MainViewController()
+        nav.viewControllers = [controller]
+        self.present(nav, animated: true, completion: nil)
     }
 }
 
