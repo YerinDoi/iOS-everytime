@@ -18,6 +18,7 @@
 		0830F7122C52AA49008E8ED1 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0830F7112C52AA49008E8ED1 /* UIColor+Extension.swift */; };
 		0830F7162C569199008E8ED1 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0830F7152C569199008E8ED1 /* InsetTextField.swift */; };
 		084FCC842C5CFA5800C46623 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084FCC832C5CFA5800C46623 /* MainViewController.swift */; };
+		08897B0C2C68FCF000B5EA2A /* DetailReplyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08897B0B2C68FCF000B5EA2A /* DetailReplyCell.swift */; };
 		089B33E32C649D0E0070E059 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B33E22C649D0E0070E059 /* MainCell.swift */; };
 		08BEB15E2C64FB8F0054F6A1 /* ReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BEB15D2C64FB8F0054F6A1 /* ReactionView.swift */; };
 		08BEB1602C650E3E0054F6A1 /* NavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BEB15F2C650E3E0054F6A1 /* NavigationTitleView.swift */; };
@@ -59,6 +60,7 @@
 		0830F7112C52AA49008E8ED1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		0830F7152C569199008E8ED1 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		084FCC832C5CFA5800C46623 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		08897B0B2C68FCF000B5EA2A /* DetailReplyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailReplyCell.swift; sourceTree = "<group>"; };
 		089B33E22C649D0E0070E059 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		08BEB15D2C64FB8F0054F6A1 /* ReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionView.swift; sourceTree = "<group>"; };
 		08BEB15F2C650E3E0054F6A1 /* NavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitleView.swift; sourceTree = "<group>"; };
@@ -117,8 +119,10 @@
 				065D794B26E3A4B30066F8D4 /* SceneDelegate.swift */,
 				065D794D26E3A4B30066F8D4 /* LoginViewController.swift */,
 				084FCC832C5CFA5800C46623 /* MainViewController.swift */,
-				08BEB1612C665C020054F6A1 /* DetailViewController.swift */,
 				089B33E22C649D0E0070E059 /* MainCell.swift */,
+				08BEB1612C665C020054F6A1 /* DetailViewController.swift */,
+				08897B0B2C68FCF000B5EA2A /* DetailReplyCell.swift */,
+				0830F7152C569199008E8ED1 /* InsetTextField.swift */,
 				08BEB15D2C64FB8F0054F6A1 /* ReactionView.swift */,
 				08BEB15F2C650E3E0054F6A1 /* NavigationTitleView.swift */,
 				065D794F26E3A4B30066F8D4 /* Main.storyboard */,
@@ -126,7 +130,6 @@
 				065D795426E3A4B50066F8D4 /* LaunchScreen.storyboard */,
 				065D795726E3A4B50066F8D4 /* Info.plist */,
 				0830F7112C52AA49008E8ED1 /* UIColor+Extension.swift */,
-				0830F7152C569199008E8ED1 /* InsetTextField.swift */,
 			);
 			path = enurytime;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				08BEB15E2C64FB8F0054F6A1 /* ReactionView.swift in Sources */,
 				08BEB1602C650E3E0054F6A1 /* NavigationTitleView.swift in Sources */,
 				08BEB1622C665C020054F6A1 /* DetailViewController.swift in Sources */,
+				08897B0C2C68FCF000B5EA2A /* DetailReplyCell.swift in Sources */,
 				0830F7122C52AA49008E8ED1 /* UIColor+Extension.swift in Sources */,
 				0830F7162C569199008E8ED1 /* InsetTextField.swift in Sources */,
 			);
