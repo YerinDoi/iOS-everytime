@@ -17,6 +17,7 @@
 		065D796C26E3A4B60066F8D4 /* enurytimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065D796B26E3A4B60066F8D4 /* enurytimeUITests.swift */; };
 		080A9CF02C6A16AA00A335F4 /* ReplyReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080A9CEF2C6A16AA00A335F4 /* ReplyReactionView.swift */; };
 		080A9CF22C6A2D2600A335F4 /* DetailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080A9CF12C6A2D2600A335F4 /* DetailContentView.swift */; };
+		080A9CF42C6A394500A335F4 /* ReplyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080A9CF32C6A394500A335F4 /* ReplyTextView.swift */; };
 		0830F7122C52AA49008E8ED1 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0830F7112C52AA49008E8ED1 /* UIColor+Extension.swift */; };
 		0830F7162C569199008E8ED1 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0830F7152C569199008E8ED1 /* InsetTextField.swift */; };
 		084FCC842C5CFA5800C46623 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084FCC832C5CFA5800C46623 /* MainViewController.swift */; };
@@ -61,6 +62,7 @@
 		065D796D26E3A4B60066F8D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		080A9CEF2C6A16AA00A335F4 /* ReplyReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyReactionView.swift; sourceTree = "<group>"; };
 		080A9CF12C6A2D2600A335F4 /* DetailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentView.swift; sourceTree = "<group>"; };
+		080A9CF32C6A394500A335F4 /* ReplyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTextView.swift; sourceTree = "<group>"; };
 		0830F7112C52AA49008E8ED1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		0830F7152C569199008E8ED1 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		084FCC832C5CFA5800C46623 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				065D795726E3A4B50066F8D4 /* Info.plist */,
 				0830F7112C52AA49008E8ED1 /* UIColor+Extension.swift */,
 				080A9CF12C6A2D2600A335F4 /* DetailContentView.swift */,
+				080A9CF32C6A394500A335F4 /* ReplyTextView.swift */,
 			);
 			path = enurytime;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				065D794C26E3A4B30066F8D4 /* SceneDelegate.swift in Sources */,
 				084FCC842C5CFA5800C46623 /* MainViewController.swift in Sources */,
 				08BEB15E2C64FB8F0054F6A1 /* ReactionView.swift in Sources */,
+				080A9CF42C6A394500A335F4 /* ReplyTextView.swift in Sources */,
 				08BEB1602C650E3E0054F6A1 /* NavigationTitleView.swift in Sources */,
 				08BEB1622C665C020054F6A1 /* DetailViewController.swift in Sources */,
 				08897B0C2C68FCF000B5EA2A /* DetailReplyCell.swift in Sources */,
